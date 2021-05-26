@@ -1,23 +1,31 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import 'controller.dart';
 
-class SplashScreen extends StatelessWidget {
+class LobbyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black87,
-      body: Center(child: _AnimatedText()),
+      body: Center(
+        child: _AnimatedText(),
+      ),
     );
   }
 }
 
 class _AnimatedText extends StatelessWidget {
-  final controller = Get.put(SplashScreenController());
+  final controller = Get.put(LobbyController());
+
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp,
+    ]);
     return DefaultTextStyle(
       style: const TextStyle(
         fontSize: 40,

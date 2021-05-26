@@ -32,6 +32,9 @@ dependencies:
   animated_text_kit: ^4.2.1
   firebase_database: ^6.1.2
   firebase_core: ^1.1.1
+  firebase_auth: ^1.2.0
+  splashscreen : 1.2.0
+  validators: ^2.0.0
 
 dev_dependencies:
   flutter_test:
