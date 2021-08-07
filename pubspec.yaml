@@ -33,8 +33,8 @@ dependencies:
   firebase_database: ^6.1.2
   firebase_core: ^1.1.1
   firebase_auth: ^1.2.0
-  splashscreen : 1.2.0
   validators: ^2.0.0
+  flutter_spinkit: ^4.1.2
 
 dev_dependencies:
   flutter_test:

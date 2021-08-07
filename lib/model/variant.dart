@@ -1,7 +1,7 @@
-const variant_content = 'variantContent';
-const is_answer = 'isAnswer';
-
 class Variant {
+  static const variant_content = 'variantContent';
+  static const is_answer = 'isAnswer';
+
   final String content;
   final bool isAnswer;
   final int id;

@@ -1,8 +1,11 @@
 import 'dart:core';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quiz_app/app/login/controller.dart';
+import 'package:quiz_app/widget/button.dart';
+import 'package:quiz_app/widget/loading_bar.dart';
 import 'package:quiz_app/widget/text_field.dart';
 import 'package:validators/validators.dart' as validator;
 
@@ -11,13 +14,30 @@ class SignUpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var controller = Get.put(SignUpController());
     return Scaffold(
-        body: Padding(
-      padding: EdgeInsets.symmetric(vertical: 50, horizontal: 16),
+        body: Stack(
+      children: [
+        SignUpContent(),
+        GetBuilder<SignUpController>(builder: (_) {
+          return controller.showLoading ? LoadingBar() : Container();
+        })
+      ],
+    ));
+  }
+}
+
+class SignUpContent extends StatelessWidget {
+  final SignUpController controller = Get.find();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16),
       child: Form(
         key: controller.formKey,
         child: SingleChildScrollView(
           child: Column(
             children: [
+              SizedBox(height: 50),
               CustomTextForm(
                 labelText: 'Email',
                 textInputType: TextInputType.emailAddress,
@@ -61,7 +81,7 @@ class SignUpScreen extends StatelessWidget {
                 textCapitalization: TextCapitalization.words,
                 validator: (value) {
                   if (value.isEmpty) {
-                    return '';
+                    return 'Enter your name';
                   }
                   return null;
                 },
@@ -69,14 +89,11 @@ class SignUpScreen extends StatelessWidget {
               SizedBox(
                 height: 30,
               ),
-              ElevatedButton(
-                onPressed: controller.registerUser,
-                child: Text('Register'),
-              ),
+              QuizButton(onTap: controller.registerUser, text: 'Sign Up')
             ],
           ),
         ),
       ),
-    ));
+    );
   }
 }

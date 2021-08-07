@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/model/variant.dart';
 
-const question_content = 'questionContent';
-const question_variants = 'variants';
-
 class Question {
+  static const question_content = 'questionContent';
+  static const question_variants = 'variants';
+  static const question_winners = 'winnerUsers';
+
   final String content;
   final List<Variant> variantsList;
-
-  Question({@required this.content, @required this.variantsList});
 
   Question.fromJson(Map<dynamic, dynamic> data)
       : content = data[question_content],

@@ -8,13 +8,15 @@ import 'package:quiz_app/widget/variants.dart';
 import 'controller.dart';
 
 class QuestionsScreen extends StatelessWidget {
-  final List<Question> questions;
+  final Map<String, Question> questions;
+  final String userUid;
 
-  QuestionsScreen({@required this.questions});
+  QuestionsScreen({@required this.questions, @required this.userUid});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(QuestionsController(questions: questions));
+    final controller =
+        Get.put(QuestionsController(questions: questions, userUid: userUid));
     return Scaffold(
       backgroundColor: Colors.black87,
       body: GetBuilder<QuestionsController>(builder: (_) {
@@ -24,16 +26,19 @@ class QuestionsScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               QuestionContent(
-                content: controller.questions[controller.questionIndex].content,
+                content: controller.questions.values
+                    .toList()[controller.questionIndex]
+                    .content,
               ),
               Column(
                 children: [
                   Variants(
-                    variants: controller
-                        .questions[controller.questionIndex].variantsList,
+                    variants: controller.questions.values
+                        .toList()[controller.questionIndex]
+                        .variantsList,
                     selectedButtonId: controller.selectedButtonID,
                     rightAnswerID: controller.rightAnswerID,
-                    onVariantTap: (id) => controller.changeSelectedButton(id),
+                    onVariantTap: (id) => controller.changeVariant(id),
                   ),
                   CountDownTimer(
                     timerDuration: Duration(seconds: 20),
