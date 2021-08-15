@@ -1,9 +1,9 @@
-import 'dart:async';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:quiz_app/app/lobby/controller.dart';
 import 'package:quiz_app/model/game.dart';
 import 'package:quiz_app/model/player.dart';
 import 'package:quiz_app/model/question.dart';
@@ -25,16 +25,17 @@ class QuestionsController extends GetxController {
   var startTimer = false;
 
   QuestionsController({@required this.questions, @required this.userUid}) {
-    questionIndexChangeListener =
-        dbQuestionIndex.onValue.listen(_onQuestionIndexChanged);
+    dbQuestionIndex.onValue.listen(_onQuestionIndexChanged);
   }
 
-  // ignore: missing_return
-  Future _onQuestionIndexChanged(Event event) {
-    questionIndex = event.snapshot.value;
-    startTimer = true;
-    rightAnswerID = -1;
-    update();
+  _onQuestionIndexChanged(Event event) {
+    LobbyController lobbyController = Get.find();
+    if (lobbyController.gameStatus == Game.gameStatusStart) {
+      questionIndex = event.snapshot.value;
+      startTimer = true;
+      rightAnswerID = -1;
+      update();
+    }
   }
 
   changeVariant(int id) {

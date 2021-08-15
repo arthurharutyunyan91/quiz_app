@@ -11,14 +11,9 @@ class LobbyScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(LobbyController(userUid: userUid));
+    Get.put(LobbyController(userUid: userUid));
     return Scaffold(
       backgroundColor: Colors.black87,
-      // body: Padding(
-      //   padding: EdgeInsets.only(top: 30, left: 30),
-      //   child: GetBuilder<LobbyController>(
-      //       builder: (_) => UsersList(users: controller.players)),
-      // )
       body: Center(
         child: _AnimatedText(),
       ),
@@ -48,25 +43,6 @@ class _AnimatedText extends StatelessWidget {
         pause: Duration(milliseconds: 100),
         repeatForever: true,
       ),
-    );
-  }
-}
-
-class UsersList extends StatelessWidget {
-  final List<String> users;
-
-  UsersList({@required this.users});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: users.length,
-      itemBuilder: (context, i) {
-        return Text(
-          '${i + 1}. ' '${users[i]}',
-          style: TextStyle(color: Colors.white, fontSize: 16),
-        );
-      },
     );
   }
 }

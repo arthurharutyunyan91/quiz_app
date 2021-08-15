@@ -24,6 +24,6 @@ class Question {
     variantsData.values.toList().forEach((element) {
       resultVariants.add(Variant.fromJson(element));
     });
-    return resultVariants;
+    return resultVariants..shuffle();
   }
 }

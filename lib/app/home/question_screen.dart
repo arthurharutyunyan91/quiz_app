@@ -41,7 +41,7 @@ class QuestionsScreen extends StatelessWidget {
                     onVariantTap: (id) => controller.changeVariant(id),
                   ),
                   CountDownTimer(
-                    timerDuration: Duration(seconds: 20),
+                    timerDuration: Duration(seconds: 4),
                     onTimerEnd: () => controller.setRightAnswer(),
                     startTimer: controller.startTimer,
                   ),

@@ -58,6 +58,7 @@ class _CountDownTimerState extends State<CountDownTimer>
 
   @override
   Widget build(BuildContext context) {
+    final widgetWidth = MediaQuery.of(context).size.width;
     return Align(
       alignment: Alignment.centerLeft,
       child: AnimatedBuilder(
@@ -67,9 +68,7 @@ class _CountDownTimerState extends State<CountDownTimer>
               margin: EdgeInsets.only(top: 16),
               color: _colorTween.value,
               height: 50,
-              width: MediaQuery.of(context).size.width -
-                  (MediaQuery.of(context).size.width *
-                      _animationController.value),
+              width: widgetWidth - (widgetWidth * _animationController.value),
               child: child,
               // width: 300,
             );

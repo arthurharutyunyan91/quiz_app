@@ -45,7 +45,6 @@ class SignUpController extends GetxController {
     }
   }
 
-  //TODO check if this works
   _registerWithEmail() {
     return firebaseAuth.createUserWithEmailAndPassword(
         email: emailController.text, password: passwordController.text);

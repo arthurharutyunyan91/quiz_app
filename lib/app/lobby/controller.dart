@@ -1,9 +1,8 @@
-import 'dart:async';
-
 import 'package:firebase_database/firebase_database.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:quiz_app/app/home/question_screen.dart';
+import 'package:quiz_app/app/lobby/lobby_screen.dart';
 import 'package:quiz_app/model/game.dart';
 import 'package:quiz_app/model/player.dart';
 import 'package:quiz_app/model/question.dart';
@@ -20,14 +19,12 @@ class LobbyController extends GetxController {
   var statusChangeListener;
   final questions = <String, Question>{};
 
-  //TODO for admin
-  var playersChangeListener;
-  var players = <String>[];
+  //todo for mainController
+  var gameStatus = '';
 
   LobbyController({this.userUid}) {
     loadQuestions();
     statusChangeListener = dbGameStatus.onValue.listen(_onGameStatusChanged);
-    playersChangeListener = playersRef.onValue.listen(_onPlayersChanged);
   }
 
   loadQuestions() async {
@@ -38,16 +35,17 @@ class LobbyController extends GetxController {
     _changePlayerStatus(Player.playerStatusPending);
   }
 
-  // ignore: missing_return
-  Future _onGameStatusChanged(Event event) {
-    if (event.snapshot.value == Game.gameStatusStart) {
+  _onGameStatusChanged(Event event) {
+    gameStatus = event.snapshot.value;
+    if (gameStatus == Game.gameStatusStart) {
       if (questions.length > 0) {
         _navigateToHomePage(questions);
         _changePlayerStatus(Player.playerStatusInGame);
-        statusChangeListener.cancel();
       } else {
         showErrorSnackbar('Check internet connection');
       }
+    } else {
+      Get.off(LobbyScreen());
     }
   }
 
@@ -57,19 +55,5 @@ class LobbyController extends GetxController {
 
   _navigateToHomePage(Map<String, Question> questions) {
     Get.off(QuestionsScreen(questions: questions, userUid: userUid));
-  }
-
-  //TODO for Admin
-  // ignore: missing_return
-  Future _onPlayersChanged(Event event) {
-    List<dynamic> playersData = event.snapshot.value.values.toList();
-    players.clear();
-    playersData.forEach((element) {
-      if (element[Player.player_status] == Player.playerStatusPending) {
-        players.add(element[Player.player_name]);
-      }
-    });
-    players.sort((a, b) => a.compareTo(b));
-    update();
   }
 }
