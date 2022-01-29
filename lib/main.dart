@@ -2,9 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-
 import 'app/splash_screen/splash_screen.dart';
-import 'app/splash_screen/splash_test.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +23,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Color.fromARGB(255, 196, 28, 196),
       ),
       debugShowCheckedModeBanner: false,
-      home: SplashTest(),
+      home: SplashScreen(),
     );
   }
 }

@@ -9,19 +9,17 @@ class SplashScreenController extends GetxController {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   final String title = 'Quiz App';
   User _currentUser;
-  var _lobbyScreen;
 
   SplashScreenController() {
     _currentUser = firebaseAuth.currentUser;
-    _lobbyScreen = LobbyScreen(userUid: _currentUser.uid);
   }
 
-  textAnimationEnded(AnimationController animationController) {
-    if (_currentUser != null) {
-      Get.off(_lobbyScreen);
-    } else {
-      animationController.forward();
-    }
+  rocketAnimationEnded(AnimationController animationController) {
+    // if (_currentUser != null) {
+    //   Get.off(LobbyScreen(userUid: _currentUser.uid));
+    // } else {
+    animationController.forward();
+    // }
   }
 
   onRegistrationButtonTap() {
