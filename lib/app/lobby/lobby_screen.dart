@@ -1,6 +1,6 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:quiz_app/widget/changable_loading_image.dart';
 
 import 'controller.dart';
 
@@ -13,35 +13,42 @@ class LobbyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(LobbyController(userUid: userUid));
     return Scaffold(
-      backgroundColor: Colors.black87,
       body: Center(
-        child: _AnimatedText(),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                'Hang tight, we’ll start in a few minutes!',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            LoadingMonster(),
+            _ProgressBar(),
+          ],
+        ),
       ),
     );
   }
 }
 
-class _AnimatedText extends StatelessWidget {
+class _ProgressBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return DefaultTextStyle(
-      style: const TextStyle(
-        fontSize: 40,
-        color: Colors.white70,
-        shadows: [
-          Shadow(
-            blurRadius: 3,
-            color: Colors.white10,
-            offset: Offset(0, 0),
-          ),
-        ],
-      ),
-      child: AnimatedTextKit(
-        animatedTexts: [
-          WavyAnimatedText('Please Wait...'),
-        ],
-        pause: Duration(milliseconds: 100),
-        repeatForever: true,
+    return Container(
+      // margin: EdgeInsets.only(top: 30),
+      width: 200,
+      child: ClipRRect(
+        borderRadius: BorderRadius.all(Radius.circular(8)),
+        child: LinearProgressIndicator(
+          valueColor: new AlwaysStoppedAnimation<Color>(Color(0xff7069DB)),
+          backgroundColor: Color(0xffDACAFB),
+          minHeight: 8,
+        ),
       ),
     );
   }

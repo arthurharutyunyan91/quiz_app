@@ -20,10 +20,11 @@ class LobbyController extends GetxController {
   final questions = <String, Question>{};
 
   //todo for mainController
-  var gameStatus = '';
+  var gameStatus = Game.gameStatusFinish;
 
   LobbyController({this.userUid}) {
     loadQuestions();
+
     statusChangeListener = dbGameStatus.onValue.listen(_onGameStatusChanged);
   }
 

@@ -22,20 +22,18 @@ class QuestionsController extends GetxController {
   var questionIndex = 0;
   var selectedButtonID = -1;
   var rightAnswerID = -1;
-  var startTimer = false;
+  var timerRunning = false;
+  var resultImage = '';
 
   QuestionsController({@required this.questions, @required this.userUid}) {
     dbQuestionIndex.onValue.listen(_onQuestionIndexChanged);
   }
 
   _onQuestionIndexChanged(Event event) {
-    LobbyController lobbyController = Get.find();
-    if (lobbyController.gameStatus == Game.gameStatusStart) {
-      questionIndex = event.snapshot.value;
-      startTimer = true;
-      rightAnswerID = -1;
-      update();
-    }
+    questionIndex = event.snapshot.value;
+    timerRunning = true;
+    rightAnswerID = -1;
+    update();
   }
 
   changeVariant(int id) {
@@ -51,8 +49,11 @@ class QuestionsController extends GetxController {
     });
     if (rightAnswerID == selectedButtonID) {
       _updateAnswerInServer();
+      resultImage = 'assets/images/loading/loading2.png';
+    } else {
+      resultImage = 'assets/images/loading/lose.png';
     }
-    startTimer = false;
+    timerRunning = false;
     update();
   }
 

@@ -21,28 +21,24 @@ class Variants extends StatelessWidget {
         VariantItem(
           onVariantTap: (id) => onVariantTap(id),
           variant: variants[0],
-          variantIndex: 'A',
           selectedButtonID: selectedButtonId,
           rightAnswerId: rightAnswerID,
         ),
         VariantItem(
           onVariantTap: (id) => onVariantTap(id),
           variant: variants[1],
-          variantIndex: 'B',
           selectedButtonID: selectedButtonId,
           rightAnswerId: rightAnswerID,
         ),
         VariantItem(
           onVariantTap: (id) => onVariantTap(id),
           variant: variants[2],
-          variantIndex: 'C',
           selectedButtonID: selectedButtonId,
           rightAnswerId: rightAnswerID,
         ),
         VariantItem(
           onVariantTap: (id) => onVariantTap(id),
           variant: variants[3],
-          variantIndex: 'D',
           selectedButtonID: selectedButtonId,
           rightAnswerId: rightAnswerID,
         ),

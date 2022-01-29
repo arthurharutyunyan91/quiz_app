@@ -10,8 +10,11 @@ class QuizButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-          primary: Color.fromARGB(255, 196, 28, 196),
-          minimumSize: Size(250, 50)),
+          primary: Color(0xff7069DB),
+          minimumSize: Size(216, 40),
+          shape: RoundedRectangleBorder(
+            borderRadius: new BorderRadius.circular(8),
+          )),
       onPressed: () => onTap?.call(),
       child: Text(text),
     );

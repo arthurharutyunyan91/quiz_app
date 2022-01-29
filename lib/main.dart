@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 import 'app/splash_screen/splash_screen.dart';
+import 'app/splash_screen/splash_test.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,9 +20,12 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitUp,
     ]);
     return GetMaterialApp(
-      theme: ThemeData(primaryColor: Color.fromARGB(255, 196, 28, 196)),
+      theme: ThemeData(
+        scaffoldBackgroundColor: Color(0xffF7F3FF),
+        primaryColor: Color.fromARGB(255, 196, 28, 196),
+      ),
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: SplashTest(),
     );
   }
 }

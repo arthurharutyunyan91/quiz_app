@@ -8,16 +8,17 @@ import 'package:quiz_app/app/login/sign_up_screen.dart';
 class SplashScreenController extends GetxController {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   final String title = 'Quiz App';
-  User currentUser;
-  var startAnimation = false;
+  User _currentUser;
+  var _lobbyScreen;
 
   SplashScreenController() {
-    currentUser = firebaseAuth.currentUser;
+    _currentUser = firebaseAuth.currentUser;
+    _lobbyScreen = LobbyScreen(userUid: _currentUser.uid);
   }
 
   textAnimationEnded(AnimationController animationController) {
-    if (currentUser != null) {
-      Get.off(LobbyScreen(userUid: currentUser.uid));
+    if (_currentUser != null) {
+      Get.off(_lobbyScreen);
     } else {
       animationController.forward();
     }
