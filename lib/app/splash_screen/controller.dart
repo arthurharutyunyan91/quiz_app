@@ -7,7 +7,6 @@ import 'package:quiz_app/app/login/sign_up_screen.dart';
 
 class SplashScreenController extends GetxController {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
-  final String title = 'Quiz App';
   User _currentUser;
 
   SplashScreenController() {
@@ -15,11 +14,11 @@ class SplashScreenController extends GetxController {
   }
 
   rocketAnimationEnded(AnimationController animationController) {
-    // if (_currentUser != null) {
-    //   Get.off(LobbyScreen(userUid: _currentUser.uid));
-    // } else {
-    animationController.forward();
-    // }
+    if (_currentUser != null) {
+      Get.off(LobbyScreen(userUid: _currentUser.uid));
+    } else {
+      animationController.forward();
+    }
   }
 
   onRegistrationButtonTap() {
