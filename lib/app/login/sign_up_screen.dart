@@ -124,9 +124,7 @@ class _SignUpContent extends StatelessWidget {
               ),
             ),
           ),
-          QuizButton(
-              // onTap: controller.registerUser,
-              text: 'Sign Up')
+          QuizButton(onTap: controller.registerUser, text: 'Sign Up')
         ],
       ),
     );
