@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class Player {
@@ -5,6 +7,7 @@ class Player {
   static const player_email = 'email';
   static const player_status = 'status';
   static const total_right_answers = 'totalRightAnswers';
+  static const avatar_index = 'avatarIndex';
 
   static const playerStatusOut = 'out';
   static const playerStatusPending = 'pending';
@@ -31,6 +34,7 @@ class Player {
       player_email: email,
       player_status: playerStatus,
       total_right_answers: totalRightAnswers,
+      avatar_index: Random().nextInt(7) + 1,
     };
   }
 }

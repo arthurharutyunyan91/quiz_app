@@ -62,12 +62,13 @@ class QuestionsController extends GetxController {
     int playerTotalAnswers =
         playersSnapshot.value[userUid][Player.total_right_answers];
     String playerName = playersSnapshot.value[userUid][Player.player_name];
+    int playerAvatarIndex = playersSnapshot.value[userUid][Player.avatar_index];
 
     dbQuestions
         .child(questions.keys.toList()[questionIndex])
         .child(Question.question_winners)
-        .child(userUid)
-        .set(playerName);
+        .child(playerName)
+        .set(playerAvatarIndex);
 
     dbPlayers
         .child(userUid)

@@ -53,9 +53,6 @@ class QuestionsScreen extends StatelessWidget {
                           child: CircularTimer(
                             onTimerEnd: () => controller.setRightAnswer(),
                           ),
-                          // child: Image.asset(
-                          //   'assets/images/loading/loading1.png',
-                          // ),
                         ),
                       )
                     : Center(
