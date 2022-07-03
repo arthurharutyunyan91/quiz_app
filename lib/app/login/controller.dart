@@ -3,7 +3,6 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:quiz_app/app/lobby/lobby_screen.dart';
 import 'package:quiz_app/model/game.dart';
 import 'package:quiz_app/model/player.dart';
